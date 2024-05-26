@@ -4,12 +4,6 @@ from FlagMapping import team_flags
 import time
 import concurrent.futures
 import json
-###ceci est un test de modif de version
-# test
-
-
-
-
 indexName = "dse_project_world_cup"
 #"https://192.168.1.130:9200/"
 try:
@@ -35,13 +29,8 @@ def main():
     page_icon="⚽️",
     layout="centered",
     initial_sidebar_state="expanded",
-    
-)
+    )
     st.image(team_flags["image"],width=750)
-
-
-
-
     st.title("World Cup Search Engine")
     search_field = st.selectbox("Search by", [ "Team","Home Team", "Away Team","City","Stadium","Date","Time (Brazil)","Stage","Win","Win Conditions","Penalty"])
     search_query = st.text_input(f"Enter a {search_field} name to search for matches")
@@ -65,8 +54,13 @@ def main():
         }
     if st.button("Search"):
         if search_query:
+
+            start_time = time.time()
             results = es.search(index=indexName, body=query)["hits"]["hits"]
-            st.subheader(f"Found {len(results)} results")
+            end_time = time.time()
+            response_time = (end_time - start_time) * 1000
+
+            st.subheader(f"Found {len(results)} results in {response_time:.2f} ms")
             for result in results:
                 with st.container(border=True):
                     print(result)
@@ -107,3 +101,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
