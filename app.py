@@ -4,6 +4,12 @@ from FlagMapping import team_flags
 import time
 import concurrent.futures
 import json
+###ceci est un test de modif de version
+# test
+
+
+
+
 indexName = "dse_project_world_cup"
 #"https://192.168.1.130:9200/"
 try:
