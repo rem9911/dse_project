@@ -6,11 +6,12 @@ import concurrent.futures
 import json
 indexName = "dse_project_world_cup"
 #"https://192.168.1.130:9200/"
+ELASTICSEARCH_PASSWORD = os.getenv("ELASTIC_PASSWORD")
 try:
     es = Elasticsearch(
         "https://localhost:9200",
         
-        basic_auth=("elastic","CIyX=*SG=U79tDbkd4Fw"),
+        basic_auth=("elastic",ELASTIC_PASSWORD),
         verify_certs=False
 #        ca_certs="/Users/remygodin/Desktop/Semester2/DSE/project/elasticsearch-8.13.4/config/certs/http_ca.crt"
     )
